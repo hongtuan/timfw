@@ -1,0 +1,42 @@
+<form #locForm="ngForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" id="dlg-frame">
+        <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between start" class="dlgheader">
+            <span>{{data.dlg_title}}</span>
+            <button mat-dialog-close mat-icon-button tabindex="-1">
+                <mat-icon class="mdci">close</mat-icon>
+            </button>
+        </div>
+        <div mat-dialog-content class="dlgbody" id="dlg-body">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px">
+                <mat-form-field>
+                    <input matInput placeholder="名称" name="itemName" [(ngModel)]="doc.linkName"
+                           tabindex="1"
+                           required/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="URL" name="itemUrl" [(ngModel)]="doc.linkUrl"
+                           tabindex="1"
+                           required/>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="dlgfooter">
+            <button type="submit" mat-raised-button color="primary" tabindex="10" [disabled]="!locForm.valid">确定
+            </button>
+            <button mat-button mat-dialog-close tabindex="11">取消</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+<material-dialog
+    [showTitle]="false"
+    [showAction]="false"
+    [extBodyClass]="'narrow-body'">
+  <dialog-content>
+    <ngb-progressbar
+        type="info" height="30px" [value]="progressValue"
+        [striped]="true" [animated]="true">{{progressText}}</ngb-progressbar>
+  </dialog-content>
+</material-dialog>

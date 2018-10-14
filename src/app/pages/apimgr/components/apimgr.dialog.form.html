@@ -1,0 +1,35 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <form #formRef="ngForm" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="api名称" name="name" [(ngModel)]="doc.name"  tabindex="2" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-select placeholder="请求方式" name="reqType" [(ngModel)]="doc.reqType">
+            <mat-option value="get">Get</mat-option>
+            <mat-option value="post">Post</mat-option>
+            <mat-option value="put">Put</mat-option>
+            <mat-option value="delete">Delete</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="url" name="url"  [(ngModel)]="doc.url" tabindex="1" required />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <mat-form-field class="full-width">
+          <textarea matInput placeholder="测试参数" name="reqParamStr"
+                    matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="10"
+                    [(ngModel)]="reqParamStr" tabindex="1" required></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </dialog-content>
+  <dialog-button>
+    <button mat-raised-button color="primary" tabindex="2" (click)="onSubmit()" [disabled]="!formRef.valid">确定</button>
+    <button mat-button mat-dialog-close tabindex="-1">取消</button>
+  </dialog-button>
+</material-dialog>

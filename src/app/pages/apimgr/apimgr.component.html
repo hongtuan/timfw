@@ -1,0 +1,7 @@
+<div class="panel-body">
+  <button  class="btn btn-primary" (click)="openAddDlg()">新增Api</button>
+  <button  class="btn btn-primary" id="btRefresh" (click)="refreshTable()">刷新</button>
+  <button  class="btn btn-primary" id="btShowColumns" (click)="setShowColumns()">显示列</button>
+  <span>api列表</span>
+  <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+</div>

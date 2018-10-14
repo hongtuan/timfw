@@ -1,0 +1,21 @@
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="moduleName">packageName</th>
+    <th>usingVersion</th>
+    <th>usingVersionTime</th>
+    <th mat-sort-header="newVersionCount">newVersionCount</th>
+    <th>latestVersion</th>
+    <th>latestVersionTime</th>
+    <th mat-sort-header="usingVersionLag">usingVersionLag</th>
+  </tr>
+
+  <tr *ngFor="let package of sortedData">
+    <td>{{package.moduleName}}</td>
+    <td>{{package.usingVersion}}</td>
+    <td>{{package.usingVersionTime}}</td>
+    <td>{{package.newVersionCount}}</td>
+    <td>{{package.latestVersion}}</td>
+    <td>{{package.latestVersionTime}}</td>
+    <td>{{package.usingVersionLag}}</td>
+  </tr>
+</table>

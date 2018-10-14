@@ -1,0 +1,26 @@
+<div class="list-content">
+  <button class="btn btn-primary" (click)="addRole()">新增角色</button>
+  <button class="btn btn-primary" id="btRefresh" (click)="refreshList()">刷新</button>
+  <span>当前角色列表</span>
+  <div class="listPanel">
+    <table class="table table-bordered">
+      <tr class="btn-primary">
+        <th width="60">序号</th>
+        <th width="100">角色编码</th>
+        <th width="180">角色名</th>
+        <th width="100">角色类型</th>
+        <th>管理</th>
+      </tr>
+      <tr *ngFor="let role of roles; let i=index">
+        <td class="clkt" title="点击修改角色信息" (click)="editRole(role)">{{i+1}}</td>
+        <td>{{role.roleCode}}</td>
+        <td>{{role.roleName}}</td>
+        <td>{{role.roleType}}</td>
+        <td>
+          <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteRole(role)"></i>
+          <i class="fa fa-edit" aria-hidden="true" (click)="assignMenu(role)"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

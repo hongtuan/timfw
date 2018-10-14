@@ -1,0 +1,39 @@
+:host /deep/ {
+  $auth-layout-padding: 2.5rem;
+
+  nb-layout .layout .layout-container .content .columns nb-layout-column {
+    padding: $auth-layout-padding;
+    padding-top: 200px;
+  }
+
+  nb-card {
+     //height: calc(100vh - 2 * #{$auth-layout-padding});
+    height: 250px;
+    width: 450px;
+    //width: 100vh;
+    margin: 0 auto;
+  }
+
+  nb-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #2b669a;
+  }
+
+  // TODO rewrite when develop responsive
+  @media (max-width: 550px) {
+    /deep/ nb-layout .layout .layout-container .content .columns nb-layout-column {
+      padding: 0;
+    }
+
+    nb-card {
+      border-radius: 0;
+      height: 60vh;
+      width: 100vh;
+    }
+  }
+}
+
+

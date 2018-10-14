@@ -1,0 +1,84 @@
+<ng-template #tipContent let-containerId="containerId">
+  <button type="button" class="btn btn-sm btn-primary" (click)="addItem(containerId)">添加</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="addItem(containerId)">重命名</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="addItem(containerId)">删除</button>
+</ng-template>
+<nb-card>
+  <nb-card-header>书签管理</nb-card-header>
+  <nb-card-body>
+    <div>
+      <button class="btn btn-primary" (click)="openAddDlg()">新增容器</button>
+    </div>
+    <div class="advancedDemo">
+      <div class="dropzone card">
+        <div class="card-body" fxLayout="column" fxLayoutAlign="space-start" fxLayoutGap="10px">
+          <ul [(dndList)]="model"
+              [dndAllowedTypes]="['container']"
+              [dndExternalSources]="true"
+              (dndDragover)="onDragover($event)"
+              fxLayout="row wrap" fxLayoutAlign="space-start" fxLayoutGap="10px"
+              (dndDrop)="onDrop($event)">
+            <li *ngFor="let container of model; let i = index;"
+                [dndDraggable]="container"
+                dndType="container"
+                dndEffectAllowed="all"
+                (dndMoved)="model.splice(i, 1)"
+                fxFlex="32"
+                [dndCallback]="callback">
+              <nb-card>
+                <nb-card-header>
+                  <div fxLayout="row" fxLayoutAlign="space-between">
+                    <div>
+                      <i class="fa {{bodyhidden[i]?'fa-angle-double-up':'fa-angle-double-down'}}"
+                         (click)="showBody(i)"></i>
+                      {{container.data.containerName}}
+                    </div>
+                    <div>
+                      <i class="fa fa-plus" (click)="addItem(container.data)" placement="top" ngbTooltip="新增子项"></i>
+                      <i class="fa fa-pencil" (click)="openEditDlg(container.data)" placement="top"
+                         ngbTooltip="容器重命名"></i>
+                      <i class="fa fa-close" (click)="deleteContainer(container.data)" placement="top"
+                         ngbTooltip="删除容器"></i>
+                    </div>
+                  </div>
+                  <!--(effects allowed: {{container.effectAllowed}})-->
+                </nb-card-header>
+                <nb-card-body [hidden]="bodyhidden[i]">
+                  <ul [(dndList)]="container.data.items"
+                      [dndAllowedTypes]="['item']"
+                      [dndHorizontalList]="true"
+                      [dndExternalSources]="true"
+                      [dndEffectAllowed]="container.effectAllowed"
+                      (dndDragover)="onDragover($event, container.data.items)"
+                      (dndDrop)="onDrop($event)"
+                      (dndInserted)="onInserted($event, container.data.items)"
+                      class="itemlist">
+                    <li *ngFor="let item of container.data.items; let i = index;"
+                        [dndDraggable]="item"
+                        dndType="item"
+                        [dndEffectAllowed]="item.effectAllowed"
+                        (dndDragstart)="logEvent('Started to drag an item')"
+                        (dndMoved)="container.data.items.splice(i, 1)"
+                        (dndDragend)="logEvent('Drag operation ended. Drop effect: ' + $event.dropEffect)">
+                      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px">
+                        <nav-info [nav]="item" [ngbTooltip]="toolbar" placement="bottom"></nav-info>
+                        <div>
+                          <i class="fa fa-pencil" (click)="editItem(container.data,i)" placement="left"
+                             ngbTooltip="编辑"></i>
+                          <i class="fa fa-close" (click)="deleteItem(container.data,i)" placement="left"
+                             ngbTooltip="删除"></i>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </nb-card-body>
+              </nb-card>
+              <div class="clearfix"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <br/>
+    </div>
+  </nb-card-body>
+</nb-card>

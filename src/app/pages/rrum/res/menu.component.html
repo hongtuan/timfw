@@ -1,0 +1,11 @@
+<div class="tree-content">
+  <button class="btn btn-primary" [disabled]="!isMenuChanged()" (click)="saveMenu()">保存</button>
+  <tree #menuTreeView [tree]="menuTreeModel" [settings]="showRootSettings"
+        (menuItemSelected)="onMenuItemSelected($event)">
+    <ng-template let-node>
+      <span>[{{node.th}},{{node.pid}},{{node.id}}]-</span>
+      <i class="fa {{node.icon}}"></i>
+      <span class="node-name" [innerHTML]="node.value"></span>
+    </ng-template>
+  </tree>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <title>{{title}}</title>
+</head>
+<body>
+<div class="text-center" style="background: linear-gradient(to right,rgba(49,87,157,0.8),#4b7bd0);padding: 0.1% 0 0.1%;">
+    <h4 style="color: #ffffff">柒拾佳护医护资讯</h4>
+</div>
+<div>{{did}}</div>
+<div style="padding: 0 2%" class="">
+    <h3 style="color: #000000">{{title}}</h3>
+    <h5 style="color: #433d3a"><span style="padding-right: 2%">{{name}}</span>
+        <span style="padding-right: 2%">{{dtype}}</span>
+        {{createdOn}}</h5>
+    <hr style="margin-top: 0 !important;">
+</div>
+<div style="padding: 0 2%;line-height: 25px;">{{{content}}}</div>
+<div style="padding: 0 2%">
+    {{#each newImgArray}}
+        <img src="{{this}}" style="width:100%;margin-bottom: 2%"/>
+    {{/each}}
+</div>
+
+</body>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>

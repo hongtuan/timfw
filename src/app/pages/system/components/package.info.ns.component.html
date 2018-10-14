@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-header>
+    <div class="tree-info">
+      package info
+      <button (click)="resetData()" class="btn btn-primary">Reset</button>
+      <button (click)="queryConfig('production')" class="btn btn-primary">queryProduction</button>
+      <button (click)="queryConfig('development')" class="btn btn-primary">queryDevelopment</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body style="min-height: 400px">
+    <mat-tab-group>
+      <mat-tab label="dependencies:{{queryInfo.production.pkgCount}},updatedOn[{{queryInfo.production.queryTime}}]">
+        <ng2-smart-table [settings]="settings" [source]="queryResult.production"></ng2-smart-table>
+      </mat-tab>
+      <mat-tab label="devDependencies:{{queryInfo.development.pkgCount}},updatedOn[{{queryInfo.development.queryTime}}]">
+        <ng2-smart-table [settings]="settings" [source]="queryResult.development"></ng2-smart-table>
+      </mat-tab>
+    </mat-tab-group>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px">
+  <div *ngIf="showTitle" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between start" class="dlg-header">
+    <span>{{title}}</span>
+    <button mat-dialog-close mat-icon-button tabindex="-1">
+      <mat-icon class="dlg-close-icon">close</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="showContent" mat-dialog-content class="dlg-body {{extBodyClass || ''}}">
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+      <ng-content select="dialog-content"></ng-content>
+    </div>
+  </div>
+  <div *ngIf="showAction" mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="dlg-footer">
+    <ng-content select="dialog-button"></ng-content>
+  </div>
+</div>
+

@@ -1,0 +1,43 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <form #locForm="ngForm">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput placeholder="电子邮件" [disabled]="disabledWhenEdit()" name="email" [(ngModel)]="doc.email"
+                 tabindex="1" required/>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="姓名" name="name" [(ngModel)]="doc.name" tabindex="2" required/>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput type="password" placeholder="登陆密码" [disabled]="disabledWhenEdit()" name="password"
+                 [(ngModel)]="doc.password" tabindex="3" required/>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="失效日期" name="expiredOn" [(ngModel)]="doc.expiredOn">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="2px">
+        <mat-form-field>
+          <mat-select placeholder="选择角色" name="roles" [(ngModel)]="doc.roles" multiple>
+            <mat-option *ngFor="let role of roles" [value]="role._id">{{role.roleName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </dialog-content>
+  <dialog-button>
+    <button type="button" mat-raised-button color="primary"
+            tabindex="7" (click)="onSubmit()" [disabled]="!locForm.valid">确定
+    </button>
+    <button mat-button mat-dialog-close tabindex="8">取消</button>
+  </dialog-button>
+</material-dialog>
+
+
+
+

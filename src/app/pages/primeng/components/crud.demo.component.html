@@ -1,0 +1,44 @@
+<p-table #dt [columns]="cols" [value]="itemList" selectionMode="single"
+         [resizableColumns]="true"  [(selection)]="selectedItem"
+         [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [rowsPerPageOptions]="[5,10,20]">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [style.width]="col.width" pResizableColumn [pSortableColumn]="col.field">
+        <span>{{col.header}}</span>
+        <p-sortIcon *ngIf="!col.noSort" [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+    <tr>
+      <th *ngFor="let col of columns">
+        <input *ngIf="!col.noFilter" class="full-width" pInputText type="text"
+               (input)="dt.filter($event.target.value, col.field, 'contains')" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns" [ngSwitch]="col.field">
+        <div *ngSwitchCase="'testResult'">
+          <p-inputSwitch onLabel="成功" offLabel="失败"></p-inputSwitch>
+        </div>
+        <div *ngSwitchCase="'updatedOn'">{{rowData[col.field] | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+        <div *ngSwitchCase="'operate'" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="3px">
+          <button type="button" pButton icon="pi pi-pencil" placement="top" ngbTooltip="Edit" (click)="showDialogToEdit(rowData, '修改Api')"></button>
+          <button type="button" pButton icon="pi pi-trash" placement="top" ngbTooltip="delete" (click)="showDialogToEdit(rowData, '修改Api')"></button>
+        </div>
+        <div *ngSwitchDefault="">{{rowData[col.field]}}</div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorright">
+    <div>Total {{itemList?.length}} cars</div>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+      <button type="button" pButton icon="pi pi-plus" (click)="showMatDialogToAdd()" label="AddMat"></button>
+    </div>
+  </ng-template>
+</p-table>
+<api-dialog-comp (onDocChanged)="onDocChanged($event)"></api-dialog-comp>
+<api-mat-dialog></api-mat-dialog>

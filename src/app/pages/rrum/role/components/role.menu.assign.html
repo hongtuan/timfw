@@ -1,0 +1,22 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <div class="tree-content">
+      <tree #menuTreeView [tree]="menuTreeModel" [settings]="showRootSettings"
+            (nodeSelected)="onNodeSelected($event)">
+        <ng-template let-node>
+          <input type="checkbox" value="{{node.id}}}" [checked]="node.selected" />
+          <i class="fa {{node.icon}}"></i>
+          <span class="node-name" [innerHTML]="node.value"></span>
+        </ng-template>
+      </tree>
+    </div>
+  </dialog-content>
+  <dialog-button>
+    <button mat-button tabindex="1" class="btn btn-primary btn-tn" (click)="preViewMenu()">预览</button>
+    <button mat-button tabindex="2"  class="btn btn-primary btn-tn" (click)="saveRoleMenu()">保存</button>
+    <button mat-button mat-dialog-close tabindex="-1" class="btn btn-primary btn-tn">关闭</button>
+  </dialog-button>
+</material-dialog>
+
+
+

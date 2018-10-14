@@ -1,0 +1,29 @@
+<p-table [columns]="cols" [value]="cars">
+  <ng-template pTemplate="caption">
+    List of Cars
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData1 let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData1[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <tr>
+      <td *ngFor="let col of columns">
+        {{col.header}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    There are {{cars?.length}} cars
+  </ng-template>
+</p-table>

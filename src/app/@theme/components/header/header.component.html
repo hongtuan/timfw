@@ -1,0 +1,19 @@
+<div class="header-container"
+     [class.left]="position === 'normal'"
+     [class.right]="position === 'inverse'">
+  <div class="logo-containter">
+    <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
+    <div class="logo" (click)="goToHome()">TimFrame</div>
+  </div>
+</div>
+<div size="medium"
+     class="header-container"
+     [class.right]="position === 'normal'"
+     [class.left]="position === 'inverse'">
+  <div class="dropdown user-container" ngbDropdown>
+    <button class="btn btn-primary user-name" ngbDropdownToggle>{{user?.name}}</button>
+    <ul class="dropdown-menu dd-menu-ext" ngbDropdownMenu>
+      <li class="dropdown-item dd-menu-item-ext" (click)="logOut()">退出</li>
+    </ul>
+  </div>
+</div>

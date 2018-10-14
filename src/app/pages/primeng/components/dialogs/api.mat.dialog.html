@@ -1,0 +1,37 @@
+<p-dialog #dlg header="DialogDemo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+          [contentStyle]="{'margin-top': '10px','overflow':'visible'}"
+          [closable]="true" [width]="400" [baseZIndex]="1999">
+    <form #formRef="ngForm" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="api名称" name="name" [(ngModel)]="doc.name" tabindex="2"/>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-select placeholder="请求方式" name="reqType" panel="dlg" [(ngModel)]="doc.reqType">
+            <mat-option value="get">Get</mat-option>
+            <mat-option value="post">Post</mat-option>
+            <mat-option value="put">Put</mat-option>
+            <mat-option value="delete">Delete</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="url" name="url" [(ngModel)]="doc.url" tabindex="1" required/>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+      <mat-form-field class="full-width">
+          <textarea matInput placeholder="测试参数" name="reqParamStr"
+                    matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="10"
+                    [(ngModel)]="reqParamStr" tabindex="1" required></textarea>
+      </mat-form-field>
+    </div>
+    </form>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+      <button type="button" pButton icon="pi pi-times" (click)="cancel()" label="Cancel"></button>
+    </div>
+  </p-footer>
+</p-dialog>

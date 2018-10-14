@@ -1,0 +1,30 @@
+<p-dialog-wrapper [dialogTitle]="dialogTitle" [displayDialog]="displayDialog">
+  <p-dialog-content>
+    <form #formRef="ngForm" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <div class="ui-float-label">
+          <input name="name" id="name" type="text" required
+                 [(ngModel)]="doc.name" tabindex="1" pInputText>
+          <label for="name">Api名称</label>
+        </div>
+        <p-dropdown [options]="reqMethods" [(ngModel)]="doc.reqType" name="reqType"
+                    placeholder="select reqType" required
+                    [style]="{'height':'26px','background-color':'white'}"></p-dropdown>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <div class="ui-float-label full-width">
+          <input class="full-width" placeholder="Url" name="url" id="url" type="text" [(ngModel)]="doc.url" tabindex="3" pInputText>
+          <label for="url">Url</label>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+        <h3>ReqParam</h3>
+        <textarea tabindex="4" name="reqParam" [rows]="5" [cols]="40" pInputTextarea [(ngModel)]="reqParamStr"></textarea>
+      </div>
+    </form>
+  </p-dialog-content>
+  <p-dialog-button>
+    <button type="button" pButton icon="pi pi-check" (click)="onSubmit()" label="Save" [disabled]="!formRef.valid"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="cancel()" label="Cancel"></button>
+  </p-dialog-button>
+</p-dialog-wrapper>

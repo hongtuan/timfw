@@ -1,0 +1,20 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <form #formRef="ngForm" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+      <mat-form-field>
+        <input matInput name="roleCode" [(ngModel)]="role.roleCode" placeholder="角色编码" required [minlength]="4" tabindex="1" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="roleName" [(ngModel)]="role.roleName" placeholder="角色名" required [minlength]="4" tabindex="2" />
+      </mat-form-field>
+      <label>角色类型：</label>
+      <mat-radio-group *ngFor="let roleType of roleTypeList" name="roleType" required [(ngModel)]="role.roleType">
+        <mat-radio-button value="{{roleType.code}}">{{roleType.name}}</mat-radio-button>
+      </mat-radio-group>
+    </form>
+  </dialog-content>
+  <dialog-button>
+    <button mat-raised-button color="primary" tabindex="2" (click)="onSubmit()" [disabled]="!formRef.valid">确定</button>
+    <button mat-button mat-dialog-close tabindex="-1">取消</button>
+  </dialog-button>
+</material-dialog>

@@ -1,0 +1,13 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <div style="width: 640px; height: 320px">
+      <dual-list [format]="format" [source]="hospitalList" [key]="key"
+        [display]="display" [filter]="true" height="160px"
+        [(destination)]="selectedHospital"></dual-list>
+    </div>
+  </dialog-content>
+  <dialog-button>
+    <button mat-raised-button color="primary" tabindex="3" (click)="onSubmit()">Save</button>
+    <button mat-button mat-dialog-close  tabindex="4">Cancel</button>
+  </dialog-button>
+</material-dialog>

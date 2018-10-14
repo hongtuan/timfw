@@ -1,0 +1,121 @@
+<!--
+<ngx-auth-block>
+  <h3 class="title">用户登陆</h3>
+  <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope">
+    <div id="myctn" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="4px">
+    <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
+         class="alert alert-danger" role="alert">
+      <div><strong>Oh snap!</strong></div>
+      <div *ngFor="let error of errors">{{ error }}</div>
+    </div>
+    <div *ngIf="showMessages.success && messages && messages.length > 0 && !submitted"
+         class="alert alert-success" role="alert">
+      <div><strong>Hooray!</strong></div>
+      <div *ngFor="let message of messages">{{ message }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <span class="mylabel">账号</span>
+      <input name="email" [(ngModel)]="user.email" id="input-email" pattern=".+@.+..+"
+             class="form-control myinput" placeholder="Email address" #email="ngModel"
+             [class.form-control-danger]="email.invalid && email.touched" autofocus
+             [required]="getConfigValue('forms.validation.email.required')">
+      <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
+        Email is required!
+      </small>
+      <small class="form-text error"
+             *ngIf="email.invalid && email.touched && email.errors?.pattern">
+        Email should be the real one!
+      </small>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <span class="mylabel">密码</span>
+      <input name="password" class="form-control myinput" [(ngModel)]="user.password" type="password" id="input-password"
+         placeholder="Password" #password="ngModel"
+             [class.form-control-danger]="password.invalid && password.touched"
+             [required]="getConfigValue('forms.validation.password.required')"
+             [minlength]="getConfigValue('forms.validation.password.minLength')"
+             [maxlength]="getConfigValue('forms.validation.password.maxLength')">
+      <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
+        Password is required!
+      </small>
+      <small
+        class="form-text error"
+        *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
+        Password should contains
+        from {{ getConfigValue('forms.validation.password.minLength') }}
+        to {{ getConfigValue('forms.validation.password.maxLength') }}
+        characters
+      </small>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly start">
+      <button [disabled]="submitted || !form.valid" class="btn btn-success mybtn"
+              [class.btn-pulse]="submitted">登陆</button>
+    </div>
+    </div>
+  </form>
+</ngx-auth-block>
+
+
+
+
+-->
+<ngx-auth-block>
+    <h2 class="title">用户登录</h2>
+    <!--<small class="form-text sub-title">请输入账号和密码</small>-->
+
+    <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope" style="background-color: #2b669a;">
+
+        <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
+             class="alert alert-danger" role="alert">
+            <!--<div><strong>糟糕!</strong></div>-->
+            <div *ngFor="let error of errors">{{ error }}</div>
+        </div>
+
+        <div *ngIf="showMessages.success && messages && messages.length > 0 && !submitted"
+             class="alert alert-success" role="alert">
+            <!--<div><strong>Hooray!</strong></div>-->
+            <div *ngFor="let message of messages">{{ message }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-email" class="sr-only">账号</label>
+            <!--<input name="email" [(ngModel)]="user.email" id="input-email" pattern=".+@.+..+"-->
+            <input name="email" [(ngModel)]="user.email" id="input-email"
+                   class="form-control" placeholder="请输入账号" #email="ngModel"
+                   [class.form-control-danger]="email.invalid && email.touched" autofocus
+                   [required]="getConfigValue('forms.validation.email.required')">
+            <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
+                请输入账号
+            </small>
+            <small class="form-text error"
+                   *ngIf="email.invalid && email.touched && email.errors?.pattern">
+                格式不正确
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="input-password" class="sr-only">密码</label>
+            <input name="password" [(ngModel)]="user.password" type="password" id="input-password"
+                   class="form-control" placeholder="请输入密码" #password="ngModel"
+                   [class.form-control-danger]="password.invalid && password.touched"
+                   [required]="getConfigValue('forms.validation.password.required')"
+                   [minlength]="getConfigValue('forms.validation.password.minLength')"
+                   [maxlength]="getConfigValue('forms.validation.password.maxLength')">
+            <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
+                请输入密码
+            </small>
+            <small
+                    class="form-text error"
+                    *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
+                Password should contains
+                from {{ getConfigValue('forms.validation.password.minLength') }}
+                to {{ getConfigValue('forms.validation.password.maxLength') }}
+                characters
+            </small>
+        </div>
+        <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"
+                [class.btn-pulse]="submitted">
+            登陆
+        </button>
+    </form>
+</ngx-auth-block>

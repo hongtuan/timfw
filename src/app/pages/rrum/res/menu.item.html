@@ -1,0 +1,23 @@
+<material-dialog [title]="data.dlg_title">
+  <dialog-content>
+    <form #formRef="ngForm">
+      <div fxLayout="row">
+        <mat-form-field>
+          <input matInput name="title" [(ngModel)]="menuItem.title" placeholder="菜单名" required  tabindex="1" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="icon" [(ngModel)]="menuItem.icon" placeholder="图标"  tabindex="2" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field>
+          <input matInput name="link" [(ngModel)]="menuItem.link" placeholder="链接" required  tabindex="3"/>
+        </mat-form-field>
+      </div>
+    </form>
+  </dialog-content>
+  <dialog-button>
+    <button mat-raised-button color="primary" tabindex="2" (click)="onSubmit()" [disabled]="!formRef.valid">确定</button>
+    <button mat-button mat-dialog-close tabindex="-1">取消</button>
+  </dialog-button>
+</material-dialog>
